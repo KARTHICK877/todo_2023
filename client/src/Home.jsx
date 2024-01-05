@@ -13,24 +13,24 @@ function Home() {
     const [todos, setTodos] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:8000/get')
+        axios.get('https://todo-app-2024.onrender.com/get')
             .then(result => setTodos(result.data))
             .catch(err => console.log(err));
     }, []);
 
     const handeleEdit = (id) => {
-        axios.put('http://localhost:8000/update/' + id)
+        axios.put('https://todo-app-2024.onrender.com/update/' + id)
             .then(result => {
                 // location.reload() should be avoided in React, consider updating state instead
                 // Reload the data by fetching it again after update
-                axios.get('http://localhost:8000/get')
+                axios.get('https://todo-app-2024.onrender.com/get')
                     .then(result => setTodos(result.data))
                     .catch(err => console.log(err));
             })
             .catch(err => console.log(err));
     };
     const handleDelete = (id) => {
-        axios.delete(`http://localhost:8000/delete/${id}`)
+        axios.delete(`https://todo-app-2024.onrender.com/delete/${id}`)
           .then(result => {
             // Remove the deleted item from the state
             setTodos(prevTodos => prevTodos.filter(todo => todo._id !== id));
